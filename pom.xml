@@ -6,65 +6,62 @@
     <parent>
         <groupId>name.pehl</groupId>
         <artifactId>superpom</artifactId>
-        <version>11</version>
+        <version>21</version>
     </parent>
 
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>name.pehl</groupId>
     <artifactId>kaitiro</artifactId>
-    <version>0.1.0</version>
+    <version>0.1-SNAPSHOT</version>
     <name>Kaitiro</name>
     <description>CDI observer for GWT</description>
-    <url>http://code.google.com/p/kaitiro/</url>
-
-
+    <url>https://github.com/hpehl/kaitiro</url>
     <scm>
-        <connection>scm:svn:http://kaitiro.googlecode.com/svn/trunk</connection>
-        <developerConnection>scm:svn:https://kaitiro.googlecode.com/svn/trunk</developerConnection>
-        <tag>HEAD</tag>
-        <url>http://kaitiro.googlecode.com/svn/trunk</url>
+        <connection>scm:git:git@github.com:hpehl/kaitiro.git</connection>
+        <developerConnection>scm:git:git@github.com:hpehl/kaitiro.git</developerConnection>
+        <url>git@github.com:hpehl/kaitiro.git</url>
     </scm>
-    <distributionManagement>
-        <repository>
-            <id>kaitiro-repo</id>
-            <name>Kaitiro Repository</name>
-            <url>svn:https://kaitiro.googlecode.com/svn/repository</url>
-        </repository>
-        <site>
-            <id>kaitiro-site</id>
-            <name>Kaitiro Site</name>
-            <url>svn:https://kaitiro.googlecode.com/svn/site</url>
-        </site>
-    </distributionManagement>
-    <repositories>
-        <repository>
-            <id>pehl-parent</id>
-            <url>http://pehl-parent.googlecode.com/svn/repository</url>
-        </repository>
-    </repositories>
+
+
+    <properties>
+        <gwt.version>2.5.0</gwt.version>
+        <gwt.plugin.version>2.5.0-rc2</gwt.plugin.version>
+        <guice.version>3.0</guice.version>
+        <gin.version>2.0.0</gin.version>
+    </properties>
 
 
     <dependencies>
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
+            <version>${gwt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-dev</artifactId>
+            <version>${gwt.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
+            <version>${guice.version}</version>
         </dependency>
         <dependency>
             <groupId>aopalliance</groupId>
             <artifactId>aopalliance</artifactId>
+            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.gwt.inject</groupId>
             <artifactId>gin</artifactId>
+            <version>${gin.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
+            <version>1.0.0.GA</version>
         </dependency>
         <dependency>
             <groupId>javax.enterprise</groupId>
@@ -109,6 +106,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>gwt-maven-plugin</artifactId>
+                <version>${gwt.plugin.version}</version>
                 <configuration>
                     <mode>htmlunit</mode>
                     <module>name.pehl.kaitiro.KaitiroTest</module>
@@ -121,30 +119,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-eclipse-plugin</artifactId>
-                <configuration>
-                    <sourceExcludes>
-                        <sourceExclude>name/pehl/kaitiro/jee/</sourceExclude>
-                    </sourceExcludes>
-                    <classpathContainers>
-                        <classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER</classpathContainer>
-                        <classpathContainer>com.google.gwt.eclipse.core.GWT_CONTAINER</classpathContainer>
-                    </classpathContainers>
-                    <additionalBuildcommands>
-                        <buildcommand>com.google.gdt.eclipse.core.webAppProjectValidator</buildcommand>
-                        <buildcommand>com.google.gwt.eclipse.core.gwtProjectValidator</buildcommand>
-                    </additionalBuildcommands>
-                    <additionalProjectnatures>
-                        <projectnature>com.google.gwt.eclipse.core.gwtNature</projectnature>
-                    </additionalProjectnatures>
-                    <excludes>
-                        <exclude>com.google.gwt:gwt-dev</exclude>
-                        <exclude>com.google.gwt:gwt-user</exclude>
-                    </excludes>
-                </configuration>
             </plugin>
         </plugins>
     </build>
